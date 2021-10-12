@@ -1,0 +1,73 @@
+CREATE TABLE exampractice(
+	pk INT UNSIGNED AUTO_INCREMENT,
+	nm VARCHAR(10) NOT NULL,
+	age VARCHAR(10) NOT NULL,
+	gender VARCHAR(1) CHECK(gender IN('남','여')),
+	PRIMARY KEY (pk)
+	);
+	
+	
+
+SELECT * FROM exampractice;
+
+INSERT INTO exampractice
+(nm, age, gender)
+VALUES
+('김승현', 24, '남'),
+('양동근', 22, '남'),
+('김새별', 26, '여');
+exampractice
+INSERT INTO exampractice
+(nm, age, gender)
+SELECT '이지후', 31, '남';
+
+SELECT nm
+FROM exampractice
+WHERE gender ='남';
+
+UPDATE exampractice
+SET nm = '이병석',
+age = 20
+WHERE pk = 6;
+
+CREATE TABLE hobbypractice(
+	hnm INT UNSIGNED auto_increment,
+	ho VARCHAR(10) NOT null,
+	PRIMARY KEY (hnm)
+	);
+	
+DROP TABLE hobbypractice;
+
+
+SELECT * FROM hobbypractice;
+
+INSERT INTO hobbypractice
+(ho)
+VALUES
+('농구'),('축구'),('노래'),('영화'),('캠핑');
+
+SELECT A.pk AS num, A.nm , A.age, A.gender, B.ho AS hobby
+FROM exampractice AS A
+INNER JOIN hobbypractice B
+ON A.pk = B.hnm;
+
+
+CREATE TABLE practice (
+	hnm INT UNSIGNED,
+	pk INT UNSIGNED,
+	PRIMARY KEY(hnm, pk),
+	FOREIGN KEY (hnm) REFERENCES hobbypractice(hnm),
+	FOREIGN KEY (pk) REFERENCES exampractice(pk)
+	);
+
+SELECT * FROM practice;
+
+INSERT INTO practice
+(pk,hnm)
+VALUES
+(1,1),
+(1,5),
+(3,4),
+(2,3),
+(6,2);
+
