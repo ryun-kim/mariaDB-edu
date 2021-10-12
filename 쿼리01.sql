@@ -1,3 +1,5 @@
+-- DDL (데이터 정의어)
+-- 제약 조건 -> 잘못된 값이 들어가지 않도록 하기 위함.
 CREATE TABLE t_student (
 	pk INT unsigned PRIMARY KEY auto_increment,
 	nm VARCHAR(5) NOT null,
